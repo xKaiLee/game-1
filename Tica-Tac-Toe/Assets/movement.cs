@@ -5,13 +5,16 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     private CharacterController controller;
+    private Rigidbody rb;
     public int playerIndex;
-    
+    Vector3 direction = new Vector3(0,0,0);
+
     public float speed = 6f;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,9 +22,9 @@ public class movement : MonoBehaviour
     {
 
         if (playerIndex == 1) {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+            direction.x = Input.GetAxisRaw("Horizontal");
+            direction.z = Input.GetAxisRaw("Vertical");
+            direction.Normalize();
 
             if (direction.magnitude >= 0.1f)
             {
@@ -45,5 +48,11 @@ public class movement : MonoBehaviour
                 controller.Move(direction * speed * Time.deltaTime);
             }
         }
+    }
+
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(direction * speed);
     }
 }

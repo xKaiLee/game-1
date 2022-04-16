@@ -16,27 +16,23 @@ public class Collecting : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("UWU");
-        if (other.tag == "point")
-        {
-            if (collected )
-            {
-                other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            }
-        }
-
-
-
-
-
         if (other.tag == "item")
         {
             collected = true;
             Destroy(other.gameObject);
-        }
+        } 
+    }
 
-    
-    
-        
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("UWU");
+        if (collision.collider.tag == "point")
+        {
+            if (collected)
+            {
+                collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                collected = false;
+            }
+        }
     }
 }
