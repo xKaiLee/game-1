@@ -6,7 +6,8 @@ public class Collecting : MonoBehaviour
 {
 
 
-
+    public movement mv;
+    public Win win;
     private bool collected = false;
     private void Update()
     {
@@ -30,8 +31,19 @@ public class Collecting : MonoBehaviour
         {
             if (collected)
             {
-                collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                collected = false;
+                if(mv.playerIndex == 1)
+                {
+                    collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                    collected = false;
+                    win.is_colored = true;
+
+                }
+                else
+                {
+                    collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    collected = false;
+                }
+
             }
         }
     }
