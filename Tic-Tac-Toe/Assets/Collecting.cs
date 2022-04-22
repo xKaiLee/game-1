@@ -42,6 +42,7 @@ public class Collecting : MonoBehaviour
                         Coloring coloring = collidingObject.GetComponent<Coloring>();
                         coloring.is_colored = true;
                         coloring.is_blue = true;
+                        coloring.color = "blue";
 
                     }
                     else
@@ -52,6 +53,7 @@ public class Collecting : MonoBehaviour
                         Coloring coloring = collidingObject.GetComponent<Coloring>();
                         coloring.is_colored = true;
                         coloring.is_red = true;
+                        coloring.color = "red";
 
                     }
                 }
