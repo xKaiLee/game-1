@@ -9,6 +9,6 @@ public class Win : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(this.transform.position);
     }
 }
