@@ -7,17 +7,14 @@ public class Collecting : MonoBehaviour
 
 
     public movement mv;
-    public Win win;
+    public Coloring coloring;
     private bool collected = false;
-    private void Update()
-    {
-        Debug.Log("UWU");
-    }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "item")
+
+        if (other.tag == "item" && collected == false)
         {
             collected = true;
             Destroy(other.gameObject);
@@ -26,22 +23,37 @@ public class Collecting : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         Debug.Log("UWU");
         if (collision.collider.tag == "point")
         {
             if (collected)
             {
-                if(mv.playerIndex == 1)
-                {
-                    collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-                    collected = false;
-                    win.is_colored = true;
+                GameObject collidingObject1 = collision.collider.gameObject;
+                Coloring coloring1 = collidingObject1.GetComponent<Coloring>();
 
-                }
-                else
-                {
-                    collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                    collected = false;
+                if (coloring1.is_colored == false)
+                { 
+                    if (mv.playerIndex == 1)
+                    {
+                        GameObject collidingObject = collision.collider.gameObject;
+                        collidingObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                        collected = false;
+                        Coloring coloring = collidingObject.GetComponent<Coloring>();
+                        coloring.is_colored = true;
+                        coloring.is_blue = true;
+
+                    }
+                    else
+                    {
+                        GameObject collidingObject = collision.collider.gameObject;
+                        collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        collected = false;
+                        Coloring coloring = collidingObject.GetComponent<Coloring>();
+                        coloring.is_colored = true;
+                        coloring.is_red = true;
+
+                    }
                 }
 
             }
