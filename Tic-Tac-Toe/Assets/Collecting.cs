@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Collecting : MonoBehaviour
@@ -42,7 +40,7 @@ public class Collecting : MonoBehaviour
                         Coloring coloring = collidingObject.GetComponent<Coloring>();
                         coloring.is_colored = true;
                         coloring.is_blue = true;
-                        coloring.color = "blue";
+                        coloring.SetColor("blue");
 
                     }
                     else
@@ -53,7 +51,7 @@ public class Collecting : MonoBehaviour
                         Coloring coloring = collidingObject.GetComponent<Coloring>();
                         coloring.is_colored = true;
                         coloring.is_red = true;
-                        coloring.color = "red";
+                        coloring.SetColor("red");
 
                     }
                 }
