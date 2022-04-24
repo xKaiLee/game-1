@@ -3,7 +3,7 @@ using UnityEngine;
 public class Collecting : MonoBehaviour
 {
 
-
+    public WinChecker winChecker;
     public movement mv;
     public Coloring coloring;
     private bool collected = false;
@@ -21,7 +21,6 @@ public class Collecting : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         Debug.Log("UWU");
         if (collision.collider.tag == "point")
         {
@@ -30,7 +29,7 @@ public class Collecting : MonoBehaviour
                 GameObject collidingObject1 = collision.collider.gameObject;
                 Coloring coloring1 = collidingObject1.GetComponent<Coloring>();
 
-                if (coloring1.is_colored == false)
+                if (coloring1.GetColor() == Color.black)
                 { 
                     if (mv.playerIndex == 1)
                     {
@@ -38,9 +37,8 @@ public class Collecting : MonoBehaviour
                         collidingObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
                         collected = false;
                         Coloring coloring = collidingObject.GetComponent<Coloring>();
-                        coloring.is_colored = true;
-                        coloring.is_blue = true;
-                        coloring.SetColor("blue");
+                        coloring.SetColor(Color.blue);
+                        winChecker.CheckWin();
 
                     }
                     else
@@ -49,9 +47,8 @@ public class Collecting : MonoBehaviour
                         collision.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                         collected = false;
                         Coloring coloring = collidingObject.GetComponent<Coloring>();
-                        coloring.is_colored = true;
-                        coloring.is_red = true;
-                        coloring.SetColor("red");
+                        coloring.SetColor(Color.red);
+                        winChecker.CheckWin();
 
                     }
                 }

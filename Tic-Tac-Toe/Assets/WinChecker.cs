@@ -14,10 +14,10 @@ public class WinChecker : MonoBehaviour
         fieldsColor = new Coloring[9];
     }
     
-    void Update()
+    public void CheckWin()
     {
         FieldsHolder fieldsHolder = GetComponent<FieldsHolder>();
-        Transform[] fields = fieldsHolder.getFields();
+        IList<Transform> fields = fieldsHolder.getFields();
         for (int i=0; i<9; i++)
         {
             fieldsColor[i] = fields[i].GetComponent<Coloring>();
@@ -37,12 +37,12 @@ public class WinChecker : MonoBehaviour
     }
 
     private bool Compare(int i, int j, int k) {
-        string color = this.fieldsColor[i-1].GetColor();
-        if (color != "black" && 
+        Color color = this.fieldsColor[i-1].GetColor();
+        if (color != Color.black && 
             this.fieldsColor[j-1].GetColor() == color && 
             this.fieldsColor[k-1].GetColor() == color) 
         {
-            this.winColor = color;
+            this.winColor = color == Color.red ? "red" : "blue";
             return true;
         }
         return false;
