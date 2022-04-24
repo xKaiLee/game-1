@@ -33,7 +33,7 @@ public class FieldsHolder : MonoBehaviour
         }
     }
 
-    public Transform[] getFields() {
-        return this.fields;
+    public IList<Transform> getFields() {
+        return Array.AsReadOnly<Transform>(this.fields);
     }
 }

@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456c33012a1486042bd01c743f30a3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winChecker: {fileID: 1379304805}
   mv: {fileID: 152773501}
   coloring: {fileID: 0}
 --- !u!143 &642221088 stripped
@@ -618,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456c33012a1486042bd01c743f30a3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winChecker: {fileID: 1379304805}
   mv: {fileID: 642221092}
   coloring: {fileID: 0}
 --- !u!1 &963194225
