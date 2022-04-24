@@ -8,7 +8,7 @@ public class FieldsHolder : MonoBehaviour
     // 7 8 9
     // 4 5 6
     // 1 2 3
-    private Transform[] fields;
+    private Transform[] fields = new Transform[8];
     private Vector3[] initialPositions = {
         new Vector3(-5.5f, 0.1f, -5.5f),
         new Vector3(0.0f, 0.1f, -5.5f),
@@ -33,8 +33,7 @@ public class FieldsHolder : MonoBehaviour
         }
     }
 
-    public IList<Transform> getFields() {
-        Debug.Log(this.fields);
-        return Array.AsReadOnly<Transform>(this.fields);
+    public Transform[] getFields() {
+        return this.fields;
     }
 }

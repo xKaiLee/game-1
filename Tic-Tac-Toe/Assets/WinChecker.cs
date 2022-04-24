@@ -8,20 +8,21 @@ public class WinChecker : MonoBehaviour
     // 4 5 6
     // 1 2 3
     private Coloring[] fieldsColor;
+    private string winColor;
 
     void Start() {
         fieldsColor = new Coloring[9];
-        FieldsHolder fieldsHolder = GetComponent<FieldsHolder>();
-        IList<Transform> fields = fieldsHolder.getFields();
-
-        for (int i=0; i<9; i++)
-        {
-            fieldsColor[i] = fields[i].GetComponent<Coloring>();
-        }
     }
     
     void Update()
     {
+        FieldsHolder fieldsHolder = GetComponent<FieldsHolder>();
+        Transform[] fields = fieldsHolder.getFields();
+        for (int i=0; i<9; i++)
+        {
+            fieldsColor[i] = fields[i].GetComponent<Coloring>();
+        }
+
         if (Compare(1,2,3) ||
             Compare(4,5,6) ||
             Compare(7,8,9) ||
@@ -31,12 +32,19 @@ public class WinChecker : MonoBehaviour
             Compare(1,5,9) ||
             Compare(3,5,7))
         {
-            Debug.Log("Win");
+            Debug.Log("Winner is " + this.winColor);
         }
     }
 
     private bool Compare(int i, int j, int k) {
-        return fieldsColor[i-1].color == fieldsColor[j-1].color && 
-                fieldsColor[j-1].color == fieldsColor[k-1].color;  
+        string color = this.fieldsColor[i-1].GetColor();
+        if (color != "black" && 
+            this.fieldsColor[j-1].GetColor() == color && 
+            this.fieldsColor[k-1].GetColor() == color) 
+        {
+            this.winColor = color;
+            return true;
+        }
+        return false;
     }
 }
