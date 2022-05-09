@@ -21,7 +21,6 @@ public class Collecting : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("UWU");
         if (collision.collider.tag == "point")
         {
             if (collected)
